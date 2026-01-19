@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>The Taiko DIY Framework&colon; Recommendations for Interoperability</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="the-taiko-diy-framework-recommendations-for-interoperability">The Taiko DIY Framework: Recommendations for Interoperability</h1>
+<blockquote>
+<p>杏姐电控盒，不止转鼓皮</p>
+<p><em>Beyond mechanical.</em></p>
+</blockquote>
+<p>Authored by Zheng &quot;Apricot&quot; Lyu, designer of TaikoCatz® 杏姐® I/O dongle.</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>Copyright © 2026 Zheng Lyu, All rights reserved.</p>
+<p>You may freely share this document providing that it remains unaltered and complete, including this notice. This document is provided &quot;as is&quot; without warranty of any kind.</p>
+</div>
+<h2 id="abstract">Abstract</h2>
+<p>Driven by the rapid expansion of the Taiko no Tatsujin enthusiast community in China, this document introduces the Taiko DIY Framework—a set of technical recommendations designed to resolve hardware fragmentation. It proposes a modular topology separating the physical Drum Assembly from the I/O Dongle, establishing strict standards for electrical pinouts, sensor interfacing, and USB HID protocols. By defining a unified specification for signal routing and low-latency connectivity, this framework aims to eliminate proprietary barriers, ensuring plug-and-play interoperability and fostering a collaborative, sustainable ecosystem for custom controller design.</p>
+<ul>
+<li><a href="#the-taiko-diy-framework-recommendations-for-interoperability">The Taiko DIY Framework: Recommendations for Interoperability</a>
+<ul>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#background">Background</a></li>
+<li><a href="#topology-and-form-factor">Topology and Form Factor</a>
+<ul>
+<li><a href="#the-drum-assembly">The Drum Assembly</a></li>
+<li><a href="#the-io-dongle">The I/O Dongle</a></li>
+</ul>
+</li>
+<li><a href="#sensor-interface">Sensor Interface</a>
+<ul>
+<li><a href="#selection-and-design">Selection and Design</a></li>
+<li><a href="#electrical-specifications">Electrical Specifications</a></li>
+<li><a href="#connector">Connector</a>
+<ul>
+<li><a href="#cabling-interface-drum">Cabling Interface (Drum)</a></li>
+<li><a href="#controller-interface-dongle">Controller Interface (Dongle)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#system-connectivity-and-interoperability">System Connectivity and Interoperability</a>
+<ul>
+<li><a href="#physical-and-electrical-interface">Physical and Electrical Interface</a>
+<ul>
+<li><a href="#power-requirements">Power Requirements</a></li>
+<li><a href="#connector-standards">Connector Standards</a></li>
+<li><a href="#implementation-notes">Implementation Notes</a></li>
+</ul>
+</li>
+<li><a href="#usb-hid-keyboard-implementation">USB HID Keyboard Implementation</a></li>
+<li><a href="#software-interoperability">Software Interoperability</a>
+<ul>
+<li><a href="#keyboard-mapping">Keyboard Mapping</a></li>
+</ul>
+</li>
+<li><a href="#unconventional-connectivity-alternatives">Unconventional Connectivity Alternatives</a></li>
+</ul>
+</li>
+<li><a href="#future-work">Future Work</a>
+<ul>
+<li><a href="#standardization-of-signal-levels">Standardization of signal levels</a></li>
+</ul>
+</li>
+<li><a href="#appendix-technical-case-study-official-taiko-no-tatsujin-arcade">Appendix: Technical Case Study: Official Taiko no Tatsujin® Arcade</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="background">Background</h2>
+<p>Following the official expansion of <strong>Taiko no Tatsujin(R)</strong> into mainland China by <strong>Wahlap Technology</strong>, the enthusiast community has seen unprecedented growth. This surge has inspired a new wave of hobbyists to design custom game controllers, ranging from personal passion projects to mini-batch commercial productions.</p>
+<p>Despite this creative momentum, the community lacks a <strong>unified technical framework</strong>. Currently, hardware fragmentation is a significant barrier; components designed by one developer often utilize proprietary wiring, incompatible assumptions, or exhibit unpredictable behavior interacting with gaming platforms. This lack of standardization limits the ability for creators to exchange parts, upgrade systems, or collaborate effectively.</p>
+<p>This document aims to address these challenges by providing a set of standardized recommendations for:</p>
+<ul>
+<li><strong>Hardware Topology:</strong> Establishing a common architectural foundation to ensure that controllers, regardless of their internal design, maintain a consistent logical structure.</li>
+<li><strong>Electrical Interfacing:</strong> Defining standardized signal protocols and connector pinouts to facilitate modularity and part-swapping between different hardware ecosystems.</li>
+<li><strong>Software Interoperability:</strong> Identifying and mitigating common pitfalls in how hardware communicates with gaming platform to ensure high-performance, &quot;plug-and-play&quot; compatibility.</li>
+</ul>
+<p>By adopting these guidelines, the DIY community can move toward a more modular and sustainable ecosystem - one that fosters innovation while ensuring seamless cross-compatibility across diverse hardware implementations and game platforms.</p>
+<h2 id="topology-and-form-factor">Topology and Form Factor</h2>
+<p>A standardized Taiko controller implementation consists of two distinct functional units:</p>
+<ul>
+<li>The <strong>Drum Assembly</strong></li>
+<li>The <strong>I/O Dongle</strong></li>
+</ul>
+<h3 id="the-drum-assembly">The Drum Assembly</h3>
+<p>The drum assembly is the physical interface housing the sensors. It captures the mechanical force of a strike and converts it into an electrical format. A standard assembly utilizes <strong>four (4) sensing points</strong> to represent the <em>Don</em> (center) and <em>Ka</em> (or <em>Katsu</em>, rim) inputs for both left and right halves as required by the game.</p>
+<h3 id="the-io-dongle">The I/O Dongle</h3>
+<p>The I/O dongle is the intelligent controller that sits between the drum assembly and the gaming platform. Its role is defined by three primary functions:</p>
+<ul>
+<li><strong>Sensor Interface:</strong> The dongle provides the necessary electrical connection to receive data from the drum assembly.</li>
+<li><strong>Strike Recognition:</strong> This internal process interprets sensor readings to identify logical <em>Don</em> and <em>Ka</em> strikes.</li>
+<li><strong>System Connectivity:</strong> The dongle sends identified strike events to game software on the host system (PC or Console).</li>
+</ul>
+<h2 id="sensor-interface">Sensor Interface</h2>
+<p>The drum utilizes piezoelectric ceramic sensors to convert physical impact into electrical signals. For optimal performance and modularity, the following standards are recommended:</p>
+<h3 id="selection-and-design">Selection and Design</h3>
+<ul>
+<li><strong>Consistency:</strong> Use identical part numbers for all four sensors to minimize sensitivity variance.</li>
+<li><strong>Housing:</strong> Plastic-housed sensors are preferred over bare elements.</li>
+<li><strong>Mounting:</strong> Secure sensors using removable methods such as nano-tape or screws. Avoid permanent adhesives to ensure serviceability.</li>
+</ul>
+<h3 id="electrical-specifications">Electrical Specifications</h3>
+<p>Adherence to these specifications is critical for interoperability. Deviations may cause suboptimal operation or hardware damage.</p>
+<ul>
+<li><strong>Electrical Responsibility:</strong> The drum assembly acts strictly as a passive sensor array. A standard assembly must provide <strong>eight (8) discrete leads</strong> (two per sensor).
+<ul>
+<li><strong>Role Definition:</strong> It is the exclusive role of the dongle to determine the grounding or connection scheme.</li>
+<li><strong>Prohibition:</strong> Bridging or grounding connections within the drum assembly or cabling is strictly prohibited, as this may conflict with the dongle’s internal electrical design.</li>
+<li><strong>Isolation:</strong> No terminal should be connected to the chassis, common ground, or any large conductive surfaces. Sensors must not share any common wiring (e.g., connecting all &quot;black wires&quot; together is forbidden).</li>
+</ul>
+</li>
+</ul>
+<h3 id="connector">Connector</h3>
+<p>The connector scheme is a standardization and refinement of the <em>de facto</em> standard established by the pioneering design from ZhangBigPower (张大力). It utilizes an <strong>8-conductor IDC ribbon cable</strong> to connect the drum assembly to the I/O dongle.</p>
+<h4 id="cabling-interface-drum">Cabling Interface (Drum)</h4>
+<p>The drum assembly cabling must terminate in a <strong>2.54mm pitch, 2x4 (8-position) IDC female connector</strong>.</p>
+<p>Each sensor pair occupies a single vertical column. The diagram below represents the pinout <strong>view from the mating face (outside)</strong> of the female IDC connector.</p>
+<pre><code>      (Polarized key, optional)
+              ┌──────┐
+      ________│      │________
+     /  LD    RK    RD    LK  \
+    |  ┌──┐  ┌──┐  ┌──┐  ┌──┐  |  Upper row
+    |  └──┘  └──┘  └──┘  └──┘  |
+    |  ┌──┐  ┌──┐  ┌──┐  ┌──┐  |  Lower row
+    |  └──┘  └──┘  └──┘  └──┘  |
+     \________________________/
+Legend:
+LK = Left Ka (Rim) LD = Left Don (Center)
+RK = Right Ka (Rim) RD = Right Don (Center)
+</code></pre>
+<div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p><strong>Danger!</strong> In accordance with <strong>Electrical Responsibility</strong> requirements, <strong>bridging or joining leads from different sensor columns within the cable is strictly prohibited.</strong> Because different dongle designs may implement internal common paths in varying ways, any pre-existing connections within the cable may create an electrical conflict with the dongle's internal architecture, leading to malfunctioning or even <strong>hardware damage</strong>.</p>
+</div>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p><strong>Recommendation</strong>: Piezoelectric sensors are polarized components. It is recommended to maintain consistent polarity across all four sensors. For example, connect all sensor outer electrodes (rims) to the <em>Upper Row</em> and all inner electrodes (circles) to the <em>Lower Row</em>, or vice versa.</p>
+</div>
+<h4 id="controller-interface-dongle">Controller Interface (Dongle)</h4>
+<p>The dongle must feature a <strong>2.54mm pitch, 2x4 (8-pin) shrouded box header</strong> with a polarized notch.</p>
+<p>The diagram below represents the pinout <strong>view from the mating face</strong> (looking directly into the shroud) of the box header.</p>
+<pre><code>     _____________ (notch)  _____________
+    |             ----------             |
+    |        LK    RD    RK    LD        |
+    |        ##    ##    ##    ##        |  Upper row
+    |                                    |
+    |        ##    ##    ##    ##        |  Lower row
+    |                                    |
+     ------------------------------------
+Legend:
+LK = Left Ka (Rim) LD = Left Don (Center)
+RK = Right Ka (Rim) RD = Right Don (Center)
+</code></pre>
+<h2 id="system-connectivity-and-interoperability">System Connectivity and Interoperability</h2>
+<p>The I/O dongle serves as the primary communication link between the drum assembly and the host gaming platform. To ensure high performance and universal &quot;plug-and-play&quot; operation, the following standards are recommended.</p>
+<h3 id="physical-and-electrical-interface">Physical and Electrical Interface</h3>
+<h4 id="power-requirements">Power Requirements</h4>
+<p>The system is designed to be bus-powered via the host’s USB interface.</p>
+<ul>
+<li><strong>Voltage:</strong> Standard 5V nominal.</li>
+<li><strong>Current Consumption:</strong> It is recommended not to consume over <strong>100mA</strong> during normal operation to ensure compatibility with all host hubs and consoles.</li>
+</ul>
+<h4 id="connector-standards">Connector Standards</h4>
+<ul>
+<li><strong>Recommended:</strong> A <strong>USB-C®</strong> compatible receptacle is the preferred standard for modern designs.</li>
+<li><strong>Acceptable:</strong> Type-B, Micro-B, or Mini-B receptacles are valid alternatives.</li>
+<li><strong>Discouraged:</strong> The use of <strong>Type-A</strong> connectors on the dongle side is discouraged to prevent user confusion and non-standard cabling configurations.</li>
+</ul>
+<h4 id="implementation-notes">Implementation Notes</h4>
+<ul>
+<li><strong>USB-C CC Configuration:</strong> To ensure compatibility with C-to-C cables (and proper power negotiation), both <code>CC1</code> and <code>CC2</code> pins on the receptacle must be independently pulled to <strong>GND</strong> via a <strong>5.1kΩ resistor</strong> each.</li>
+<li><strong>Development Boards:</strong> Many DIY designs utilize Arduino-compatible boards. While these generally work well, builders should take care that some budget boards with USB-C ports omit the required CC pull-down resistors to cut costs.</li>
+</ul>
+<h3 id="usb-hid-keyboard-implementation">USB HID Keyboard Implementation</h3>
+<p>While Gamepad interfaces are mandatory for certain console platforms, this framework prioritizes the <strong>HID Keyboard</strong> standard due to its ubiquitous support and driverless operation across PC-based Taiko simulation software.</p>
+<p>For optimal latency and timing precision, the interface should adhere to the <strong>USB 2.0 Full Speed</strong> standard (12Mbps) with a configured polling rate of <strong>1000Hz</strong> (1ms interval).</p>
+<ul>
+<li>✅ <strong>Recommended: Full Speed (12Mbps) @ 1000Hz.</strong> (500Hz is acceptable).</li>
+<li>❌ <strong>Discouraged: Polling Rates &lt; 250Hz.</strong> Intervals of 4ms or greater introduce perceptible timing jitter (variance).</li>
+<li>❌ <strong>Discouraged: Low Speed (1.5Mbps).</strong> This mode is strictly discouraged because polling is limited to 10ms intervals (100Hz).</li>
+<li>❌ <strong>Discouraged: High Speed (480Mbps).</strong> While capable of 8kHz polling, High Speed is generally discouraged for this application. It adds significant hardware complexity without a meaningful benefit for this application.</li>
+</ul>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p><strong>Arduino Tip:</strong> ATmega32U4-based Arduino boards (such as the Pro Micro or Leonardo) using the standard <code>Keyboard</code> library generally meet these requirements out-of-the-box.</p>
+</div>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p><strong>Why 1000Hz?</strong></p>
+<p>The jump from 250Hz (4ms) to 1000Hz (1ms) provides a perceptible reduction in input variance (jitter), which is critical for advanced players targeting &quot;All Perfect&quot; judgments. However, moving beyond 1000Hz to 8kHz offers diminishing returns: the latency reduction is imperceptible and statistically negligible. This topic is worth another deep-dive article.</p>
+</div>
+<h3 id="software-interoperability">Software Interoperability</h3>
+<p>To ensure immediate compatibility with the widest range of PC-based Taiko-like games, it is recommended to adhere to standard input mapping.</p>
+<h4 id="keyboard-mapping">Keyboard Mapping</h4>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>Notation: <code>DF-JK</code> refers to using <code>D</code>, <code>F</code>, <code>J</code>, <code>K</code> keys to represent <em>left Ka</em>, <em>left Don</em>, <em>right Don</em>, and <em>right Ka</em> respectively.</p>
+</div>
+<ul>
+<li><strong>Default Mapping (<code>DF-JK</code>):</strong> The dongle should implement the <code>DF-JK</code> layout by default. This is the de-facto standard for most games requiring no configuration.</li>
+<li><strong>Multi-Player Support:</strong> To support 2-player modes on a single PC, user-selectable mappings are recommended. Common standards include <code>RT-IO</code>, <code>ZX-CV</code>, or <code>CV-NM</code>.</li>
+</ul>
+<h3 id="unconventional-connectivity-alternatives">Unconventional Connectivity Alternatives</h3>
+<p>For experimental purposes or hardware lacking native USB support (e.g., standard Arduino Uno/Nano), developers may utilize <strong>UART Serial Bridging</strong>.</p>
+<ul>
+<li><strong>Hardware Topology:</strong> The controller transmits data via a standard UART (Serial) interface to a USB-to-TTL adapter connected to the host.</li>
+<li><strong>Host Middleware:</strong> Unlike native HID, this topology requires a dedicated <strong>software bridge</strong> running on the PC to read the incoming serial stream and inject virtual keystrokes into the operating system.</li>
+</ul>
+<h2 id="future-work">Future Work</h2>
+<h3 id="standardization-of-signal-levels">Standardization of signal levels</h3>
+<p>Currently, this framework does not define specific electrical signal levels (voltage ranges) due to the wide variety of piezoelectric sensors, drum structure designs, and materials in use. The expectations of signal levels are often determined by test-and-tune processes unique to each hardware implementation. Moreover, the striking strength and style of individual players can vary widely. With these factors in mind, defining standards for signal levels is challenging and maybe eventually impractical.</p>
+<h2 id="appendix-technical-case-study-official-taiko-no-tatsujin-arcade">Appendix: Technical Case Study: Official Taiko no Tatsujin® Arcade</h2>
+<p>To understand the necessity of the Taiko DIY Framework, we analyzed the topology of the Official Taiko no Tatsujin® Arcade hardware by play-testing and technical inference.</p>
+<p>While iconic, the arcade architecture suffers from legacy constraints:</p>
+<ul>
+<li>The topology is completely different from the DIY Framework:
+<ul>
+<li>The arcade system forwards &quot;strength&quot; values (numbers) all the way to the game software. The game software then interprets the data to determine strike events. This can be inferred from the service mode of the arcade showing hit strength values.</li>
+<li>By comparing photos from the internet of disassembled boards, roughly the same design is used across multiple arcade generations, from AC7 to AC16.</li>
+</ul>
+</li>
+<li>Drum
+<ul>
+<li>Build quality is generally good, however:</li>
+<li>Some batches have severe tolerance issues.</li>
+<li>Heavy-duty arcades for public use is prone to severe damage and wear caused by inexperienced players striking very hard.</li>
+</ul>
+</li>
+<li>Overall strike recognition
+<ul>
+<li>Very poor in reliability, mediocre in performance.</li>
+<li>Many players report frequent missed notes and phantom hits.</li>
+</ul>
+</li>
+</ul>
+<p>The official arcade hardware suffers from severe limitations in reliability and performance, primarily due to its legacy design. This analysis underscores the need for a standardized framework to improve the quality and interoperability of custom Taiko controllers.</p>
+
+            
+            
+        </body>
+        </html>
